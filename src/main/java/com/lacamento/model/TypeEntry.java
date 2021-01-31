@@ -1,5 +1,8 @@
 package com.lacamento.model;
 
-public class TypeEntry {
+public enum TypeEntry {
+	
+	INCOMEME,
+	EXPENSE
 
 }
