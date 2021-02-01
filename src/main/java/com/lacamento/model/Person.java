@@ -1,12 +1,15 @@
 package com.lacamento.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -30,4 +33,7 @@ public class Person implements Serializable{
 	
 	@Embedded
 	private Address address;
+	
+	@OneToMany(mappedBy = "person")
+	private List<Entry> entry = new ArrayList<>();
 }
