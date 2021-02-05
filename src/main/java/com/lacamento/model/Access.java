@@ -22,7 +22,7 @@ import lombok.Setter;
 @EqualsAndHashCode
 @Getter @Setter
 @Entity
-public class User implements Serializable{
+public class Access implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 		@Id

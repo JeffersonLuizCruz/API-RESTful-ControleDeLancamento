@@ -33,7 +33,7 @@ public class Entry implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long codigo;
+	private Long id;
 	
 	@NotNull
 	private String description;

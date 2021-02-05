@@ -26,8 +26,8 @@ public class Permission implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String desciption;
+	private String description;
 
 	@ManyToMany(mappedBy = "permission")
-	private List<User> user;
+	private List<Access> user;
 }
