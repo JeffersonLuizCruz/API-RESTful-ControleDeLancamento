@@ -20,7 +20,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-@Getter @Setter
+@Getter @Setter			///Teste de conexão com Gitkraken
 @Entity
 public class Person implements Serializable{
 	private static final long serialVersionUID = 1L;
