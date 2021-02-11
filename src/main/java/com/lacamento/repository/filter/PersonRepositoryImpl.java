@@ -26,9 +26,7 @@ public class PersonRepositoryImpl implements PersonRepositoryQuery{
 	
 	@Override
 	public Page<Person> filterByPerson(PersonFilter personFilter, Pageable pageable) {
-		
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-		
 		CriteriaQuery<Person> criteriaQuery = criteriaBuilder.createQuery(Person.class);
 		
 		Root<Person> root = criteriaQuery.from(Person.class);
@@ -39,24 +37,22 @@ public class PersonRepositoryImpl implements PersonRepositoryQuery{
 		TypedQuery<Person> typedQuery = entityManager.createQuery(criteriaQuery);
 		addPaginationRestriction(typedQuery, pageable);
 		
-		
 		return new PageImpl<>(typedQuery.getResultList(), pageable, this.total(personFilter));
 	}
 	
 	private Predicate[] createRestrictions(PersonFilter personFilter, CriteriaBuilder criteriaBuilder, Root<Person> root) {
-		
 		List<Predicate> listaPredicates = new ArrayList<>();
 		
 		if(!StringUtils.isEmpty(personFilter.getName())) {
 			listaPredicates.add(criteriaBuilder.like(
-									criteriaBuilder.lower(root.get("nome")), 
-									"%"+personFilter.getName()+"%"));
+								criteriaBuilder.lower(root.get("nome")), 
+								"%"+personFilter.getName()+"%"));
 		}
 		
 		if(!StringUtils.isEmpty(personFilter.getActive())) {
 			listaPredicates.add(criteriaBuilder.equal(
-									root.get("ativo"), 
-									personFilter.getActive()));
+								root.get("ativo"), 
+								personFilter.getActive()));
 		}
 		
 		return listaPredicates.toArray(new Predicate[listaPredicates.size()]);
@@ -64,7 +60,6 @@ public class PersonRepositoryImpl implements PersonRepositoryQuery{
 	
 	//Observação: mudar esse código
 	private void addPaginationRestriction(TypedQuery<?> typedQuery, Pageable pageable) {
-		
 		int paginaAtual = pageable.getPageNumber();
 		int totalRegistroPorPagina = pageable.getPageSize();
 		int primeiroRegistroDaPagina = paginaAtual * totalRegistroPorPagina;
@@ -74,9 +69,7 @@ public class PersonRepositoryImpl implements PersonRepositoryQuery{
 	}
 	
 	private Long total(PersonFilter personFilter) {
-		
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-		
 		CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
 		
 		Root<Person> root = criteriaQuery.from(Person.class);
@@ -84,7 +77,6 @@ public class PersonRepositoryImpl implements PersonRepositoryQuery{
 		Predicate[] predicates = this.createRestrictions(personFilter, criteriaBuilder, root);
 		
 		criteriaQuery.where(predicates);
-		
 		criteriaQuery.select(criteriaBuilder.count(root));
 		
 		return entityManager.createQuery(criteriaQuery).getSingleResult();

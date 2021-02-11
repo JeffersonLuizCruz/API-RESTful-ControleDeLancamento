@@ -22,7 +22,6 @@ public class PersonImpl implements PersonService{
 	@Override
 	public Person update(Long id, Person person) {
 		Person isPerson = isEmptyPerson(id);
-		
 		BeanUtils.copyProperties(person, isPerson, "id");
 		
 		return personRepository.save(person);
@@ -31,16 +30,16 @@ public class PersonImpl implements PersonService{
 	@Override
 	public Person getById(Long id) {
 		Person person = isEmptyPerson(id);
+		
 		return person;
 	}
 
 	@Override
 	public void delete(Long id) {
-		personRepository.deleteById(id);
-		
+		personRepository.deleteById(id);	
 	}
 	
-private Person isEmptyPerson(Long id) {
+	private Person isEmptyPerson(Long id) {
 		
 		Optional<Person> exceptionEmptyPerson = personRepository.findById(id);
 		
