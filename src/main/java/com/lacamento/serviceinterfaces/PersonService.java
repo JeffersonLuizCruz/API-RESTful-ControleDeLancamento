@@ -1,10 +1,9 @@
 package com.lacamento.serviceinterfaces;
 
-import org.springframework.stereotype.Service;
 
 import com.lacamento.model.Person;
 
-@Service
+
 public interface PersonService {
 	
 	public Person save(Person person);

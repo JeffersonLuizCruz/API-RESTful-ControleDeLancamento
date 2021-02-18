@@ -5,12 +5,14 @@ import java.util.Optional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.stereotype.Service;
 
 import com.lacamento.model.Person;
 import com.lacamento.repository.PersonRepository;
 import com.lacamento.serviceinterfaces.PersonService;
 
-public class PersonImpl implements PersonService{
+@Service
+public class PersonServiceImpl implements PersonService{
 
 	@Autowired private PersonRepository personRepository;
 	
