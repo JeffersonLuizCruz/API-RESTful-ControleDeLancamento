@@ -13,7 +13,7 @@ public class CategoryTest {
 	
 	@Test
 	public void saveTest() {
-		Category category = new Category(null, "Alimentos", null);
+		Category category = new Category(null, "Roupas", null);
 		categoryRepository.save(category);
 	}
 	

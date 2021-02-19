@@ -8,13 +8,13 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.lacamento.event.Event;
+import com.lacamento.event.EventController;
 
 @Component
-public class ListenerEvent implements ApplicationListener<Event>{
+public class ListenerEvent implements ApplicationListener<EventController>{
 
 	@Override
-	public void onApplicationEvent(Event event) {
+	public void onApplicationEvent(EventController event) {
 		HttpServletResponse response= event.getResponse();
 		Long id = event.getId();
 		

@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lacamento.event.Event;
+import com.lacamento.event.EventController;
 import com.lacamento.model.Category;
 import com.lacamento.repository.CategoryRepository;
 
 
 @RestController
-@RequestMapping(value = "categories")
+@RequestMapping(value = "teste")
 public class CategoryController {
 	
 	@Autowired private CategoryRepository categoryRepository;
@@ -33,14 +33,14 @@ public class CategoryController {
 	@PostMapping
 	public ResponseEntity<Category> save(@RequestBody Category category, HttpServletResponse response) {
 		Category saveCategory = categoryRepository.save(category);
-		publisher.publishEvent(new Event(this, response, saveCategory.getId()));
+		publisher.publishEvent(new EventController(this, response, saveCategory.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(saveCategory);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Optional<Category>> getById(@PathVariable Long id){
+	public Category getById(@PathVariable Long id){
 		Optional<Category> result = categoryRepository.findById(id);
-		return ResponseEntity.ok(result);
+		return result.get();
 	}
 	
 	@GetMapping

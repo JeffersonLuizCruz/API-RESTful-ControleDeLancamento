@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lacamento.event.Event;
+import com.lacamento.event.EventController;
 import com.lacamento.model.Person;
 import com.lacamento.repository.PersonRepository;
 
@@ -33,7 +33,7 @@ public class PersonController{
 	@PostMapping
 	public ResponseEntity<Person> save(@RequestBody Person person, HttpServletResponse response) {
 		Person savePerson = personRepository.save(person);
-		publisher.publishEvent(new Event(this, response, savePerson.getId()));
+		publisher.publishEvent(new EventController(this, response, savePerson.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(savePerson);
 	}
 	
